@@ -15,7 +15,7 @@ class TestPdfController extends BaseController
 
         $path = public_path("/pdf_temp/");
         if (!File::exists($path)) {
-            File::makeDirectory($path, 0755, true);
+            File::makeDirectory($path, 0777, true);
         }
 
         Browsershot::url('https://google.com')
@@ -23,7 +23,7 @@ class TestPdfController extends BaseController
         ->showBackground()
         ->save($path.'urlToPdf.pdf');
 
-        echo 'Pdf generated at <i>public/urlToPdf.pdf</i>';
+        echo 'Pdf generated at <i>public/pdf_temp/urlToPdf.pdf</i>';
 
 
         Browsershot::html($view)->save($path.'htmlToPdf.pdf');
