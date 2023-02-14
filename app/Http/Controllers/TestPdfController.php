@@ -18,8 +18,14 @@ class TestPdfController extends BaseController
             File::makeDirectory($path, 0755, true);
         }
 
-        Browsershot::html($view)->save($path.'test.pdf');       
-          
-        Browsershot::url('https://google.com')->save($path.'test1.pdf');
+        Browsershot::url('https://google.com')
+        ->format('A4')
+        ->showBackground()
+        ->save($path.'urlToPdf.pdf');
+
+        echo 'Pdf generated at <i>public/urlToPdf.pdf</i>';
+
+
+        Browsershot::html($view)->save($path.'htmlToPdf.pdf');
     }    
 }
